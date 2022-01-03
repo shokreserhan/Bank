@@ -3,8 +3,7 @@ const Transaction = require("../model/transactionSchema");
 const router = Express.Router();
 
 router.get("/transactions", async (req, res) => {
-  let transactions = await Transaction.find({}).exec()
-  res.send(transactions);
+  res.send(await Transaction.find({}).exec());
 });
 
 router.post("/transaction", async (req, res) => {
@@ -14,8 +13,12 @@ router.post("/transaction", async (req, res) => {
 });
 
 router.delete("/transaction", (req, res) => {
-  const { amount, category, vendor } = req.body;
-  Transaction.findOneAndDelete({ amount, category, vendor }).exec()
+  const { _id } = req.body;
+  if (!_id) {
+    res.status(400).send("error")
+    return null
+  }
+  Transaction.findByIdAndDelete({ _id }).exec()
   res.send("Deleted");
 });
 

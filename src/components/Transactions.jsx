@@ -5,7 +5,11 @@ function Transactions({ transactions, onDelete }) {
   return (
     <div className="transactions-container">
       {transactions.map((transaction) => (
-        <Transaction transaction={transaction} onDelete={onDelete} />
+        <Transaction
+          key={transaction._id}
+          transaction={transaction}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );
