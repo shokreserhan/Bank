@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Transaction = require('./server/model/transactionSchema')
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Bank', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/Bank', { useNewUrlParser: true })
 
 
 const transactions = [
