@@ -3,7 +3,6 @@ const path = require('path');
 const api = require('./server/routes/api');
 const mongoose = require('mongoose')
 
-
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Bank', { useNewUrlParser: true })
 
 const app = express();
