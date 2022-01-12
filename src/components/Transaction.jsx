@@ -1,7 +1,6 @@
 function Transaction({ transaction, onDelete }) {
   function getAmountClasses() {
-    if (transaction.amount > 0) return "positive";
-    return "negative";
+    return transaction.amount > 0 ?  "positive" : "negative";
   }
 
   return (

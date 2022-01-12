@@ -1,6 +1,6 @@
 import React from "react";
 
-function CatigoriesOfTransactions({ transactions, onDelete }) {
+function CatigoriesOfTransactions({ transactions }) {
   const catigorized = {};
 
   transactions.forEach((transaction) => {
@@ -16,7 +16,7 @@ function CatigoriesOfTransactions({ transactions, onDelete }) {
       {Object.keys(catigorized).map((category) => (
         <div key={category} className="category-container">
           <h1>{category}</h1>
-          <h4> Amount:{" "} <span className={getAmountClasses(catigorized[category])}> {" "} {catigorized[category]}{" "} $</span></h4>
+          <h4> Amount: <span className={getAmountClasses(catigorized[category])}> {catigorized[category]} $</span></h4>
         </div>
       ))}
     </div>

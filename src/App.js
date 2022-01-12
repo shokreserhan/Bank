@@ -1,5 +1,5 @@
 import { Component, Fragment } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import NavBar from "./components/NavBar";
 import Balance from "./components/Balance";
@@ -32,6 +32,7 @@ class App extends Component {
     let transactions = (await axios.get(this.APP_URL + "/transactions")).data;
     let balance = 0;
     transactions.map((transaction) => (balance += transaction.amount));
+    
     this.setState({
       transactions,
       inputs: {
@@ -84,6 +85,7 @@ class App extends Component {
             <Route exact path="/transactions" render={() => (<Transactions transactions={this.state.transactions} onDelete={this.handleDelete} />)}/>
             <Route path={"/operations"} render={() => ( <Operations inputs={this.state.inputs} onChangeInput={this.handleChangeInput} addTransaction={this.addTransaction} />)} />
             <Route path="/CatigoriesOfTransactions" render={() => (<CatigoriesOfTransactions transactions={this.state.transactions}/>)}/>
+
           </div>
         </Router>
       </Fragment>
