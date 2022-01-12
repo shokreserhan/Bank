@@ -83,9 +83,8 @@ class App extends Component {
             <NavBar />
             <Balance balance={this.state.balance} />
             <Route exact path="/transactions" render={() => (<Transactions transactions={this.state.transactions} onDelete={this.handleDelete} />)}/>
-            <Route path={"/operations"} render={() => ( <Operations inputs={this.state.inputs} onChangeInput={this.handleChangeInput} addTransaction={this.addTransaction} />)} />
-            <Route path="/CatigoriesOfTransactions" render={() => (<CatigoriesOfTransactions transactions={this.state.transactions}/>)}/>
-
+            <Route exact path={"/operations"} render={() => ( <Operations inputs={this.state.inputs} onChangeInput={this.handleChangeInput} addTransaction={this.addTransaction} />)} />
+            <Route exact path="/CatigoriesOfTransactions" render={() => (<CatigoriesOfTransactions transactions={this.state.transactions}/>)}/>
           </div>
         </Router>
       </Fragment>
