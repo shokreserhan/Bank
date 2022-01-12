@@ -57,6 +57,8 @@ a {
 }
 
 .navbar > a {
+  padding: 1em;
   color: white;
   border-right: white 2px solid;
+  border-left: white 2px solid;
 }
