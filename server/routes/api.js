@@ -18,8 +18,14 @@ router.delete("/transaction", (req, res) => {
     res.status(400).send("error")
     return null
   }
-  Transaction.findByIdAndDelete({ _id }).exec()
-  res.send("Deleted");
+  Transaction.findByIdAndDelete({ _id }, (err,deletedTransaction) => {
+    if(deletedTransaction != undefined){
+      res.send("Deleted");
+    }else{
+      res.send("ID not found");
+    }
+  })
+
 });
 
 module.exports = router;

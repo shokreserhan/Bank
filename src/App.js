@@ -10,17 +10,11 @@ import "./App.css";
 
 class App extends Component {
   APP_URL = "http://localhost:3001";
-  EMPTY_STRING = "";
   constructor() {
     super();
     this.state = {
       balance: 0,
       transactions: [],
-      inputs: {
-        amount: this.EMPTY_STRING,
-        vendor: this.EMPTY_STRING,
-        category: this.EMPTY_STRING,
-      },
     };
   }
 
@@ -35,11 +29,6 @@ class App extends Component {
     
     this.setState({
       transactions,
-      inputs: {
-        amount: this.EMPTY_STRING,
-        vendor: this.EMPTY_STRING,
-        category: this.EMPTY_STRING,
-      },
       balance,
     });
   };
@@ -61,20 +50,6 @@ class App extends Component {
       }).then(() => this.getTransactions());
   };
 
-  handleChangeInput = (event, isNumbersOnly = false) => {
-    const inputs = { ...this.state.inputs };
-    const value = event.target.value;
-    if (isNumbersOnly) {
-      const numericValue = value.match(/\d+/);
-      if (numericValue !== null) {
-        inputs[event.target.className] = numericValue[0];
-      }
-    } else {
-      inputs[event.target.className] = value;
-    }
-    this.setState({ inputs });
-  };
-
   render() {
     return (
       <Fragment>
@@ -83,7 +58,7 @@ class App extends Component {
             <NavBar />
             <Balance balance={this.state.balance} />
             <Route exact path="/transactions" render={() => (<Transactions transactions={this.state.transactions} onDelete={this.handleDelete} />)}/>
-            <Route exact path={"/operations"} render={() => ( <Operations inputs={this.state.inputs} onChangeInput={this.handleChangeInput} addTransaction={this.addTransaction} />)} />
+            <Route exact path={"/operations"} render={() => ( <Operations addTransaction={this.addTransaction} />)} />
             <Route exact path="/CatigoriesOfTransactions" render={() => (<CatigoriesOfTransactions transactions={this.state.transactions}/>)}/>
           </div>
         </Router>
